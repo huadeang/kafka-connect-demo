@@ -1,0 +1,21 @@
+{
+    "name": "fulfillment-connector",  
+    "config": {
+      "connector.class": "io.debezium.connector.postgresql.PostgresConnector", 
+      "database.hostname": "localhost", 
+      "database.port": "5432", 
+      "database.user": "postgres", 
+      "database.password": "welcome1", 
+      "database.dbname" : "postgres", 
+      "database.server.name": "fulfillment", 
+      "table.include.list": "public.inventory",
+      "database.history.kafka.topic": "dbhistory.demo",
+      "include.schema.changes": "true",
+      "transforms" : "unwrap,addTopicPrefix",
+      "transforms.unwrap.type" : "io.debezium.transforms.ExtractNewRecordState",
+      "transforms.addTopicPrefix.type": "org.apache.kafka.connect.transforms.RegexRouter",
+      "transforms.addTopicPrefix.regex": "(.*)",
+      "transforms.addTopicPrefix.replacement" : "pg-debezium-$1",
+      "plugin.name": "pgoutput"
+    }
+  }

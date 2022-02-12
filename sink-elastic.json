@@ -1,0 +1,11 @@
+{
+    "name" : "sink-elastic-01",
+    "config":{
+        "connector.class" : "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+        "topics": "pg-debezium-fulfillment.public.inventory",
+        "connection.url" : "http://localhost:9200",
+        "type.name" : "type.name=kafkaconnect",
+        "key.ignore" : "true",
+        "schema.ignore" : "true"
+    }
+}
