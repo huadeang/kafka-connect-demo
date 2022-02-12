@@ -1,0 +1,15 @@
+---
+version: '3'
+services:
+  
+  postgres:
+    image: postgres:14.1
+    container_name: postgres
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    ports:
+      - "5432:5432"
+    volumes:
+      - "${PWD}/my-postgres.conf:/etc/postgresql/postgresql.conf"
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    environment:
+      POSTGRES_PASSWORD: welcome1
